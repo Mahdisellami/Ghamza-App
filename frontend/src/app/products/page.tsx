@@ -34,12 +34,16 @@ export default async function ProductsPage() {
   ])
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Header */}
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">All Products</h1>
-        <p className="text-xl text-gray-600">Discover our complete collection of handcrafted Tunisian products</p>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header Section */}
+      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-12">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">All Products</h1>
+          <p className="text-xl text-primary-100">Discover our complete collection of handcrafted Tunisian products</p>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12">
 
       <div className="flex flex-col md:flex-row gap-8">
         {/* Sidebar - Categories */}
@@ -129,6 +133,7 @@ export default async function ProductsPage() {
             </div>
           )}
         </main>
+      </div>
       </div>
     </div>
   )

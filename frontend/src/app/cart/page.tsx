@@ -9,27 +9,44 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-2xl mx-auto text-center">
-          <svg className="w-24 h-24 text-gray-300 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Your Cart is Empty</h1>
-          <p className="text-gray-600 mb-8">Looks like you haven't added any items to your cart yet.</p>
-          <Link
-            href="/products"
-            className="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition"
-          >
-            Start Shopping
-          </Link>
+      <div className="min-h-screen bg-gray-50">
+        {/* Header Section */}
+        <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-12">
+          <div className="container mx-auto px-4">
+            <h1 className="text-4xl md:text-5xl font-bold mb-2">Shopping Cart</h1>
+          </div>
+        </section>
+
+        <div className="container mx-auto px-4 py-16">
+          <div className="max-w-2xl mx-auto text-center">
+            <svg className="w-24 h-24 text-gray-300 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Your Cart is Empty</h2>
+            <p className="text-gray-600 mb-8">Looks like you haven't added any items to your cart yet.</p>
+            <Link
+              href="/products"
+              className="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition"
+            >
+              Start Shopping
+            </Link>
+          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header Section */}
+      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-12">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">Shopping Cart</h1>
+          <p className="text-xl text-primary-100">{items.length} {items.length === 1 ? 'item' : 'items'} in your cart</p>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12">
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Cart Items */}
@@ -176,6 +193,7 @@ export default function CartPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   )
