@@ -1,0 +1,10 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Tunisian-inspired geometric pattern logo -->
+  <circle cx="60" cy="60" r="55" fill="#DA4229"/>
+  <circle cx="60" cy="60" r="45" fill="#F77F71"/>
+  <path d="M60 25 L75 40 L60 55 L45 40 Z" fill="#FFFFFF" opacity="0.9"/>
+  <path d="M60 65 L75 80 L60 95 L45 80 Z" fill="#FFFFFF" opacity="0.9"/>
+  <path d="M35 50 L50 65 L35 80 L20 65 Z" fill="#FFFFFF" opacity="0.7"/>
+  <path d="M85 50 L100 65 L85 80 L70 65 Z" fill="#FFFFFF" opacity="0.7"/>
+  <text x="60" y="115" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#DA4229" text-anchor="middle">GHAMZA</text>
+</svg>
