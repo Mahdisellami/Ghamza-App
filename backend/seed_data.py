@@ -51,7 +51,7 @@ def seed_products(db: Session):
             price=38.00,
             stock=15,
             category_id=pottery.id,
-            images=["https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
         Product(
@@ -61,7 +61,7 @@ def seed_products(db: Session):
             price=85.00,
             stock=8,
             category_id=pottery.id,
-            images=["https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
         Product(
@@ -71,7 +71,7 @@ def seed_products(db: Session):
             price=95.00,
             stock=10,
             category_id=pottery.id,
-            images=["https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
         Product(
@@ -81,7 +81,7 @@ def seed_products(db: Session):
             price=45.00,
             stock=12,
             category_id=pottery.id,
-            images=["https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1565183997392-2f5c8b24637f?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
 
@@ -93,7 +93,7 @@ def seed_products(db: Session):
             price=42.00,
             stock=20,
             category_id=textiles.id,
-            images=["https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
         Product(
@@ -103,7 +103,7 @@ def seed_products(db: Session):
             price=125.00,
             stock=8,
             category_id=textiles.id,
-            images=["https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1567725926468-0ac0a3d3db72?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
         Product(
@@ -113,7 +113,7 @@ def seed_products(db: Session):
             price=380.00,
             stock=5,
             category_id=textiles.id,
-            images=["https://images.unsplash.com/photo-1584528315471-e4621c3d4d8e?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
         Product(
@@ -123,7 +123,7 @@ def seed_products(db: Session):
             price=35.00,
             stock=25,
             category_id=textiles.id,
-            images=["https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
 
@@ -135,7 +135,7 @@ def seed_products(db: Session):
             price=165.00,
             stock=6,
             category_id=jewelry.id,
-            images=["https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
         Product(
@@ -145,7 +145,7 @@ def seed_products(db: Session):
             price=58.00,
             stock=15,
             category_id=jewelry.id,
-            images=["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
 
@@ -157,7 +157,7 @@ def seed_products(db: Session):
             price=95.00,
             stock=7,
             category_id=home_decor.id,
-            images=["https://images.unsplash.com/photo-1544139252-dc49826c8db7?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1625321423869-db881be04fc4?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
         Product(
@@ -167,7 +167,7 @@ def seed_products(db: Session):
             price=52.00,
             stock=10,
             category_id=baskets.id,
-            images=["https://images.unsplash.com/photo-1590736969955-71cc94901144?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1603899122634-f086ca5f5ddd?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
 
@@ -179,7 +179,7 @@ def seed_products(db: Session):
             price=48.00,
             stock=18,
             category_id=baskets.id,
-            images=["https://images.unsplash.com/photo-1544139252-dc49826c8db7?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1591197010606-9e65c058a855?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
 
@@ -191,7 +191,7 @@ def seed_products(db: Session):
             price=75.00,
             stock=12,
             category_id=home_decor.id,
-            images=["https://images.unsplash.com/photo-1535396788786-6b6d4c7a9cac?w=800&h=800&fit=crop"],
+            images=["https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80"],
             is_active=True
         ),
     ]
