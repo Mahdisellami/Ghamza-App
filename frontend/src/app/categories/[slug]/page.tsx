@@ -30,7 +30,7 @@ async function getCategoryProducts(categoryId: number) {
 
 async function getCategories() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/categories/`, {
+    const res = await fetch(`${getApiUrl()}/api/categories/`, {
       cache: 'no-store'
     })
     if (!res.ok) return []

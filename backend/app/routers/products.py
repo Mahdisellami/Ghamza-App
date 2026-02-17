@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
 from ..database import get_db
 from ..models import Product
 from ..schemas import ProductCreate, ProductUpdate, ProductResponse
@@ -12,10 +12,17 @@ router = APIRouter()
 def get_products(
     skip: int = 0,
     limit: int = 100,
+    category_id: Optional[int] = Query(None, description="Filter products by category ID"),
     db: Session = Depends(get_db)
 ):
-    """Get all products"""
-    products = db.query(Product).filter(Product.is_active == True).offset(skip).limit(limit).all()
+    """Get all products, optionally filtered by category"""
+    query = db.query(Product).filter(Product.is_active == True)
+
+    # Filter by category if provided
+    if category_id is not None:
+        query = query.filter(Product.category_id == category_id)
+
+    products = query.offset(skip).limit(limit).all()
     return products
 
 
