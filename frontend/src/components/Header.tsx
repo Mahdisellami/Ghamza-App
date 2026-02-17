@@ -8,6 +8,7 @@ import CurrencySelector from './CurrencySelector'
 import LanguageSelector from './LanguageSelector'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useSession, signOut } from 'next-auth/react'
+import { useBackendAuth } from '@/hooks/useBackendAuth'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -15,6 +16,9 @@ export default function Header() {
   const getTotalItems = useCartStore((state) => state.getTotalItems)
   const { t } = useLanguage()
   const { data: session, status } = useSession()
+
+  // Sync backend token to sessionStorage
+  useBackendAuth()
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">

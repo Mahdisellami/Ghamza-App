@@ -82,3 +82,47 @@ def login(user_credentials: UserLogin, db: Session = Depends(get_db)):
 def get_me(current_user: User = Depends(get_current_active_user)):
     """Get current authenticated user details"""
     return current_user
+
+
+@router.post("/oauth/sync", response_model=Token)
+def sync_oauth_user(
+    email: str,
+    full_name: str,
+    provider: str,
+    db: Session = Depends(get_db)
+):
+    """
+    Sync OAuth user (Google/Facebook) with backend database.
+    Creates user if doesn't exist, returns JWT token for API access.
+    """
+    # Check if user already exists
+    db_user = db.query(User).filter(User.email == email).first()
+
+    if not db_user:
+        # Create new user for OAuth login
+        # Generate a random password hash (won't be used for OAuth users)
+        import secrets
+        random_password = secrets.token_urlsafe(32)
+        hashed_password = get_password_hash(random_password)
+
+        db_user = User(
+            email=email,
+            hashed_password=hashed_password,
+            full_name=full_name,
+            is_active=True
+        )
+        db.add(db_user)
+        db.commit()
+        db.refresh(db_user)
+
+    # Create access token for this user
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": str(db_user.id), "email": db_user.email, "provider": provider},
+        expires_delta=access_token_expires
+    )
+
+    return {
+        "access_token": access_token,
+        "token_type": "bearer"
+    }

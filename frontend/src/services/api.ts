@@ -14,7 +14,14 @@ const apiClient: AxiosInstance = axios.create({
 // Request interceptor to add auth token
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('access_token')
+    // Try to get token from localStorage first (for email/password auth)
+    let token = localStorage.getItem('access_token')
+
+    // If not in localStorage, try to get from sessionStorage (for OAuth)
+    if (!token && typeof window !== 'undefined') {
+      token = sessionStorage.getItem('backend_token')
+    }
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
