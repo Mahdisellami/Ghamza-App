@@ -1,12 +1,14 @@
 'use client'
 
 import { useCartStore } from '@/stores/cartStore'
+import { useLanguage } from '@/contexts/LanguageContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import Price from '@/components/Price'
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, clearCart, getTotalPrice } = useCartStore()
+  const { t } = useLanguage()
 
   if (items.length === 0) {
     return (
@@ -14,7 +16,7 @@ export default function CartPage() {
         {/* Header Section */}
         <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-12">
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-2">Shopping Cart</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-2">{t('cart.title')}</h1>
           </div>
         </section>
 
@@ -23,13 +25,13 @@ export default function CartPage() {
             <svg className="w-24 h-24 text-gray-300 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Your Cart is Empty</h2>
-            <p className="text-gray-600 mb-8">Looks like you haven't added any items to your cart yet.</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('cart.empty')}</h2>
+            <p className="text-gray-600 mb-8">{t('cart.empty_desc')}</p>
             <Link
               href="/products"
               className="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition"
             >
-              Start Shopping
+              {t('cart.start_shopping')}
             </Link>
           </div>
         </div>
@@ -42,8 +44,8 @@ export default function CartPage() {
       {/* Header Section */}
       <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-12">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">Shopping Cart</h1>
-          <p className="text-xl text-primary-100">{items.length} {items.length === 1 ? 'item' : 'items'} in your cart</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">{t('cart.title')}</h1>
+          <p className="text-xl text-primary-100">{items.length} {items.length === 1 ? t('cart.item') : t('cart.items')}</p>
         </div>
       </section>
 
@@ -88,7 +90,7 @@ export default function CartPage() {
 
                 {/* Quantity Controls */}
                 <div className="flex items-center gap-4">
-                  <label className="text-sm text-gray-600">Quantity:</label>
+                  <label className="text-sm text-gray-600">{t('products.quantity')}:</label>
                   <div className="flex items-center border border-gray-300 rounded-md">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
@@ -109,13 +111,13 @@ export default function CartPage() {
                     </button>
                   </div>
                   <span className="text-sm text-gray-500">
-                    ({item.stock} available)
+                    ({item.stock} {t('products.in_stock')})
                   </span>
                 </div>
 
                 {/* Subtotal */}
                 <div className="mt-4 text-right">
-                  <span className="text-sm text-gray-600">Subtotal: </span>
+                  <span className="text-sm text-gray-600">{t('cart.subtotal')}: </span>
                   <Price amount={item.price * item.quantity} className="text-lg font-bold text-gray-900" />
                 </div>
               </div>
@@ -127,30 +129,30 @@ export default function CartPage() {
             onClick={clearCart}
             className="text-red-600 hover:text-red-700 transition text-sm font-medium"
           >
-            Clear Cart
+            {t('cart.clear')}
           </button>
         </div>
 
         {/* Order Summary */}
         <div className="lg:col-span-1">
           <div className="bg-white rounded-lg shadow-md p-6 sticky top-24">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Order Summary</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-6">{t('cart.order_summary')}</h2>
 
             <div className="space-y-3 mb-6">
               <div className="flex justify-between text-gray-600">
-                <span>Subtotal</span>
+                <span>{t('cart.subtotal')}</span>
                 <Price amount={getTotalPrice()} className="text-gray-600" />
               </div>
               <div className="flex justify-between text-gray-600">
-                <span>Shipping</span>
-                <span className="text-green-600">Free</span>
+                <span>{t('cart.shipping')}</span>
+                <span className="text-green-600">{t('cart.free_shipping')}</span>
               </div>
               <div className="flex justify-between text-gray-600">
-                <span>Tax</span>
-                <span>Calculated at checkout</span>
+                <span>{t('cart.tax')}</span>
+                <span>{t('cart.tax_checkout')}</span>
               </div>
               <div className="border-t pt-3 flex justify-between text-lg font-bold text-gray-900">
-                <span>Total</span>
+                <span>{t('cart.total')}</span>
                 <Price amount={getTotalPrice()} className="text-primary-600 font-bold text-lg" />
               </div>
             </div>
@@ -159,14 +161,14 @@ export default function CartPage() {
               href="/checkout"
               className="w-full block bg-primary-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-primary-700 transition mb-3"
             >
-              Proceed to Checkout
+              {t('cart.checkout')}
             </Link>
 
             <Link
               href="/products"
               className="w-full block border-2 border-gray-300 text-gray-700 text-center py-3 rounded-lg font-semibold hover:bg-gray-50 transition"
             >
-              Continue Shopping
+              {t('cart.continue_shopping')}
             </Link>
 
             {/* Trust Badges */}
@@ -175,19 +177,19 @@ export default function CartPage() {
                 <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                <span>Secure checkout</span>
+                <span>{t('cart.secure_checkout')}</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-600">
                 <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                <span>Free shipping on orders $100+</span>
+                <span>{t('cart.free_shipping_over')}</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-600">
                 <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                <span>Easy 30-day returns</span>
+                <span>{t('cart.easy_returns')}</span>
               </div>
             </div>
           </div>

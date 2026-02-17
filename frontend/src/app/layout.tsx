@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { CurrencyProvider } from '@/contexts/CurrencyContext'
 import { LanguageProvider } from '@/contexts/LanguageContext'
+import SessionProvider from '@/components/SessionProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,15 +29,17 @@ export default function RootLayout({
         <link rel="icon" href="/gamza-logo.png" />
       </head>
       <body className={inter.className}>
-        <LanguageProvider>
-          <CurrencyProvider>
-            <Header />
-            <main className="min-h-screen">
-              {children}
-            </main>
-            <Footer />
-          </CurrencyProvider>
-        </LanguageProvider>
+        <SessionProvider>
+          <LanguageProvider>
+            <CurrencyProvider>
+              <Header />
+              <main className="min-h-screen">
+                {children}
+              </main>
+              <Footer />
+            </CurrencyProvider>
+          </LanguageProvider>
+        </SessionProvider>
         <SpeedInsights />
       </body>
     </html>

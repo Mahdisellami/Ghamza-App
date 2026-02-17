@@ -1,7 +1,11 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Footer() {
+  const { t } = useLanguage()
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-12">
@@ -20,7 +24,7 @@ export default function Footer() {
               <h3 className="text-xl font-bold text-primary-400">Gamza Tounsia</h3>
             </div>
             <p className="text-gray-400 text-sm mb-4">
-              Authentic Tunisian handcrafted products. Bringing traditional craftsmanship to your home.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               <a
@@ -43,26 +47,26 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.quick_links')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/products" className="text-gray-400 hover:text-white transition">
-                  Shop All Products
+                  {t('footer.shop_all')}
                 </Link>
               </li>
               <li>
                 <Link href="/categories" className="text-gray-400 hover:text-white transition">
-                  Categories
+                  {t('nav.categories')}
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="text-gray-400 hover:text-white transition">
-                  About Us
+                  {t('nav.about')}
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-gray-400 hover:text-white transition">
-                  Contact
+                  {t('nav.contact')}
                 </Link>
               </li>
             </ul>
@@ -70,26 +74,26 @@ export default function Footer() {
 
           {/* Customer Service */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.customer_service')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/shipping" className="text-gray-400 hover:text-white transition">
-                  Shipping Info
+                  {t('footer.shipping_info')}
                 </Link>
               </li>
               <li>
                 <Link href="/returns" className="text-gray-400 hover:text-white transition">
-                  Returns & Exchanges
+                  {t('footer.returns')}
                 </Link>
               </li>
               <li>
                 <Link href="/faq" className="text-gray-400 hover:text-white transition">
-                  FAQ
+                  {t('footer.faq')}
                 </Link>
               </li>
               <li>
                 <Link href="/privacy" className="text-gray-400 hover:text-white transition">
-                  Privacy Policy
+                  {t('footer.privacy')}
                 </Link>
               </li>
             </ul>
@@ -97,18 +101,18 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.contact_us')}</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>Tunisia</li>
+              <li>{t('footer.country')}</li>
               <li>Email: contact@gamzatounsia.tn</li>
-              <li>Phone: +216 XX XXX XXX</li>
+              <li>{t('footer.phone')}: +216 XX XXX XXX</li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Gamza Tounsia. All rights reserved.</p>
-          <p className="mt-2">Handcrafted with love in Tunisia</p>
+          <p>&copy; {new Date().getFullYear()} Gamza Tounsia. {t('footer.rights')}</p>
+          <p className="mt-2">{t('footer.tagline')}</p>
         </div>
       </div>
     </footer>
