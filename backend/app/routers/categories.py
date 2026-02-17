@@ -15,10 +15,17 @@ def get_categories(db: Session = Depends(get_db)):
     return categories
 
 
-@router.get("/{category_id}", response_model=CategoryResponse)
-def get_category(category_id: int, db: Session = Depends(get_db)):
-    """Get a specific category"""
-    category = db.query(Category).filter(Category.id == category_id).first()
+@router.get("/{category_identifier}", response_model=CategoryResponse)
+def get_category(category_identifier: str, db: Session = Depends(get_db)):
+    """Get a specific category by ID or slug"""
+    # Try to parse as integer (ID)
+    try:
+        category_id = int(category_identifier)
+        category = db.query(Category).filter(Category.id == category_id).first()
+    except ValueError:
+        # If not an integer, treat as slug
+        category = db.query(Category).filter(Category.slug == category_identifier).first()
+
     if not category:
         raise HTTPException(status_code=404, detail="Category not found")
     return category
