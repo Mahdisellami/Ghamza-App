@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { getApiUrl } from '@/lib/api'
 
 async function getProducts() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/`, {
+    const res = await fetch(`${getApiUrl()}/api/products/`, {
       cache: 'no-store'
     })
     if (!res.ok) return []
@@ -16,7 +17,7 @@ async function getProducts() {
 
 async function getCategories() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/categories/`, {
+    const res = await fetch(`${getApiUrl()}/api/categories/`, {
       cache: 'no-store'
     })
     if (!res.ok) return []

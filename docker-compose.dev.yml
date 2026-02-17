@@ -65,6 +65,7 @@ services:
     container_name: ghamza_frontend_dev
     working_dir: /app
     environment:
+      API_URL: http://backend:8000
       NEXT_PUBLIC_API_URL: http://localhost:8001
       NODE_ENV: development
     ports:
