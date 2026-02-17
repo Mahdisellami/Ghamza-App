@@ -51,7 +51,7 @@ def seed_products(db: Session):
             price=38.00,
             stock=15,
             category_id=pottery.id,
-            images=["https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/assiette-dune-nabeul.jpg"],
             is_active=True
         ),
         Product(
@@ -61,7 +61,7 @@ def seed_products(db: Session):
             price=85.00,
             stock=8,
             category_id=pottery.id,
-            images=["https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/plat-lila-ceramique.jpg"],
             is_active=True
         ),
         Product(
@@ -71,7 +71,7 @@ def seed_products(db: Session):
             price=95.00,
             stock=10,
             category_id=pottery.id,
-            images=["https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/bol-artisanal-nabeul.jpg"],
             is_active=True
         ),
         Product(
@@ -93,7 +93,7 @@ def seed_products(db: Session):
             price=42.00,
             stock=20,
             category_id=textiles.id,
-            images=["https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/fouta-traditionnelle.jpg"],
             is_active=True
         ),
         Product(
@@ -123,7 +123,7 @@ def seed_products(db: Session):
             price=35.00,
             stock=25,
             category_id=textiles.id,
-            images=["https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/housse-coussin-brodee.jpg"],
             is_active=True
         ),
 
@@ -135,7 +135,7 @@ def seed_products(db: Session):
             price=165.00,
             stock=6,
             category_id=jewelry.id,
-            images=["https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/collier-filigrane-argent.jpg"],
             is_active=True
         ),
         Product(
@@ -145,7 +145,7 @@ def seed_products(db: Session):
             price=58.00,
             stock=15,
             category_id=jewelry.id,
-            images=["https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/bracelet-main-fatma.jpg"],
             is_active=True
         ),
 
@@ -167,7 +167,7 @@ def seed_products(db: Session):
             price=52.00,
             stock=10,
             category_id=baskets.id,
-            images=["https://images.unsplash.com/photo-1603899122634-f086ca5f5ddd?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/mortier-olivier.jpg"],
             is_active=True
         ),
 
@@ -191,7 +191,7 @@ def seed_products(db: Session):
             price=75.00,
             stock=12,
             category_id=home_decor.id,
-            images=["https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/lanterne-orientale.jpg"],
             is_active=True
         ),
     ]
