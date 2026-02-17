@@ -81,7 +81,7 @@ def seed_products(db: Session):
             price=45.00,
             stock=12,
             category_id=pottery.id,
-            images=["https://images.unsplash.com/photo-1565183997392-2f5c8b24637f?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/olivier-cutting-board.jpg"],
             is_active=True
         ),
 
@@ -103,7 +103,7 @@ def seed_products(db: Session):
             price=125.00,
             stock=8,
             category_id=textiles.id,
-            images=["https://images.unsplash.com/photo-1567725926468-0ac0a3d3db72?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/shems-bed-throw.jpg"],
             is_active=True
         ),
         Product(
@@ -113,7 +113,7 @@ def seed_products(db: Session):
             price=380.00,
             stock=5,
             category_id=textiles.id,
-            images=["https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/margoum-rug.jpg"],
             is_active=True
         ),
         Product(
@@ -157,7 +157,7 @@ def seed_products(db: Session):
             price=95.00,
             stock=7,
             category_id=home_decor.id,
-            images=["https://images.unsplash.com/photo-1625321423869-db881be04fc4?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/copper-bonbonniere.jpg"],
             is_active=True
         ),
         Product(
@@ -179,7 +179,7 @@ def seed_products(db: Session):
             price=48.00,
             stock=18,
             category_id=baskets.id,
-            images=["https://images.unsplash.com/photo-1591197010606-9e65c058a855?auto=format&fit=crop&w=800&q=80"],
+            images=["/images/products/palm-basket.jpg"],
             is_active=True
         ),
 
