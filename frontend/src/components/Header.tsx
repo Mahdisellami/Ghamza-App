@@ -17,7 +17,7 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-3">
             <div className="relative w-12 h-16">
               <Image
-                src="/gamza-logo.jpg"
+                src="/gamza-logo.png"
                 alt="Gamza Tounsia Logo"
                 fill
                 className="object-contain"

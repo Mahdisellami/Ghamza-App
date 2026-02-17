@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="flex items-center space-x-3 mb-4">
               <div className="relative w-10 h-14">
                 <Image
-                  src="/gamza-logo.jpg"
+                  src="/gamza-logo.png"
                   alt="Gamza Tounsia"
                   fill
                   className="object-contain"

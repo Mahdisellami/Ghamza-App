@@ -67,7 +67,7 @@ export default async function Home() {
       </section>
 
       {/* Features */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-cream-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -158,7 +158,7 @@ export default async function Home() {
       </section>
 
       {/* Categories */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-cream-100">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Shop by Category</h2>
