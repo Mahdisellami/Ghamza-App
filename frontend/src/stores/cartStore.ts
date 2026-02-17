@@ -77,7 +77,7 @@ export const useCartStore = create<CartStore>()(
       },
     }),
     {
-      name: 'ghamza-cart',
+      name: 'gamza-tounsia-cart',
     }
   )
 )

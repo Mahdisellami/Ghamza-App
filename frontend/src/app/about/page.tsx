@@ -6,7 +6,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-12">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Ghamza</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Gamza Tounsia</h1>
           <p className="text-xl text-primary-100">Preserving Tunisian Heritage Through Authentic Craftsmanship</p>
         </div>
       </section>
@@ -19,8 +19,9 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
             <div className="space-y-4 text-gray-600">
               <p>
-                Ghamza is a celebration of Tunisia's rich artisanal heritage. Our name, derived from the Arabic word
-                meaning "wink" or "blink," represents the fleeting moments of beauty captured in each handcrafted piece.
+                Gamza Tounsia is a celebration of Tunisia's rich artisanal heritage. Our name, "Gamza" derived from the Arabic word
+                meaning "wink" or "blink," represents the fleeting moments of beauty captured in each handcrafted piece, while "Tounsia"
+                proudly proclaims our Tunisian roots.
               </p>
               <p>
                 Founded with a passion for preserving traditional Tunisian crafts, we work directly with skilled

@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-primary-400">Ghamza</h3>
+            <h3 className="text-xl font-bold mb-4 text-primary-400">Gamza Tounsia</h3>
             <p className="text-gray-400 text-sm mb-4">
               Authentic Tunisian handcrafted products. Bringing traditional craftsmanship to your home.
             </p>
@@ -89,14 +89,14 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>Tunisia</li>
-              <li>Email: contact@ghamza.tn</li>
+              <li>Email: contact@gamzatounsia.tn</li>
               <li>Phone: +216 XX XXX XXX</li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Ghamza. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Gamza Tounsia. All rights reserved.</p>
           <p className="mt-2">Handcrafted with love in Tunisia</p>
         </div>
       </div>

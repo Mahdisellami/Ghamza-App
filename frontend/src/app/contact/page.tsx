@@ -58,8 +58,8 @@ export default function ContactPage() {
                     </svg>
                     <div>
                       <p className="font-semibold text-gray-900">Email</p>
-                      <a href="mailto:contact@ghamza.com" className="text-primary-600 hover:text-primary-700">
-                        contact@ghamza.com
+                      <a href="mailto:contact@gamzatounsia.com" className="text-primary-600 hover:text-primary-700">
+                        contact@gamzatounsia.com
                       </a>
                     </div>
                   </div>
