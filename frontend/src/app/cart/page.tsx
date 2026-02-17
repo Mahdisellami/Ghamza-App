@@ -3,6 +3,7 @@
 import { useCartStore } from '@/stores/cartStore'
 import Image from 'next/image'
 import Link from 'next/link'
+import Price from '@/components/Price'
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, clearCart, getTotalPrice } = useCartStore()
@@ -83,7 +84,7 @@ export default function CartPage() {
                   </button>
                 </div>
 
-                <p className="text-2xl font-bold text-primary-600 mb-4">${item.price.toFixed(2)}</p>
+                <Price amount={item.price} className="text-2xl font-bold text-primary-600 mb-4" />
 
                 {/* Quantity Controls */}
                 <div className="flex items-center gap-4">
@@ -115,9 +116,7 @@ export default function CartPage() {
                 {/* Subtotal */}
                 <div className="mt-4 text-right">
                   <span className="text-sm text-gray-600">Subtotal: </span>
-                  <span className="text-lg font-bold text-gray-900">
-                    ${(item.price * item.quantity).toFixed(2)}
-                  </span>
+                  <Price amount={item.price * item.quantity} className="text-lg font-bold text-gray-900" />
                 </div>
               </div>
             </div>
@@ -140,7 +139,7 @@ export default function CartPage() {
             <div className="space-y-3 mb-6">
               <div className="flex justify-between text-gray-600">
                 <span>Subtotal</span>
-                <span>${getTotalPrice().toFixed(2)}</span>
+                <Price amount={getTotalPrice()} className="text-gray-600" />
               </div>
               <div className="flex justify-between text-gray-600">
                 <span>Shipping</span>
@@ -152,7 +151,7 @@ export default function CartPage() {
               </div>
               <div className="border-t pt-3 flex justify-between text-lg font-bold text-gray-900">
                 <span>Total</span>
-                <span className="text-primary-600">${getTotalPrice().toFixed(2)}</span>
+                <Price amount={getTotalPrice()} className="text-primary-600 font-bold text-lg" />
               </div>
             </div>
 

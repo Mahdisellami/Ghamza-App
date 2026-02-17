@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useCartStore } from '@/stores/cartStore'
+import Price from '@/components/Price'
 
 export default function ProductDetailPage() {
   const params = useParams()
@@ -121,7 +122,7 @@ export default function ProductDetailPage() {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">{product.name}</h1>
 
           <div className="flex items-baseline gap-4 mb-6">
-            <span className="text-4xl font-bold text-primary-600">${product.price}</span>
+            <Price amount={product.price} className="text-4xl font-bold text-primary-600" />
             {product.stock > 0 ? (
               <span className="text-green-600 font-medium">In Stock ({product.stock} available)</span>
             ) : (
