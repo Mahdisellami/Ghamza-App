@@ -5,10 +5,13 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useCartStore } from '@/stores/cartStore'
 import CurrencySelector from './CurrencySelector'
+import LanguageSelector from './LanguageSelector'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const getTotalItems = useCartStore((state) => state.getTotalItems)
+  const { t } = useLanguage()
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -31,24 +34,25 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-gray-700 hover:text-primary-600 transition">
-              Home
+              {t('nav.home')}
             </Link>
             <Link href="/products" className="text-gray-700 hover:text-primary-600 transition">
-              Products
+              {t('nav.products')}
             </Link>
             <Link href="/categories" className="text-gray-700 hover:text-primary-600 transition">
-              Categories
+              {t('nav.categories')}
             </Link>
             <Link href="/about" className="text-gray-700 hover:text-primary-600 transition">
-              About
+              {t('nav.about')}
             </Link>
             <Link href="/contact" className="text-gray-700 hover:text-primary-600 transition">
-              Contact
+              {t('nav.contact')}
             </Link>
           </div>
 
           {/* Cart & User Actions */}
           <div className="hidden md:flex items-center space-x-2">
+            <LanguageSelector />
             <CurrencySelector />
             <Link href="/cart" className="relative p-2">
               <svg className="w-6 h-6 text-gray-700 hover:text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,10 +63,10 @@ export default function Header() {
               </span>
             </Link>
             <Link href="/login" className="text-gray-700 hover:text-primary-600 px-3 py-2">
-              Login
+              {t('nav.login')}
             </Link>
             <Link href="/register" className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition">
-              Sign Up
+              {t('nav.signup')}
             </Link>
           </div>
 
