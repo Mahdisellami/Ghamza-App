@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -7,7 +8,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-primary-400">Gamza Tounsia</h3>
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="relative w-10 h-14">
+                <Image
+                  src="/gamza-logo.jpg"
+                  alt="Gamza Tounsia"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-primary-400">Gamza Tounsia</h3>
+            </div>
             <p className="text-gray-400 text-sm mb-4">
               Authentic Tunisian handcrafted products. Bringing traditional craftsmanship to your home.
             </p>

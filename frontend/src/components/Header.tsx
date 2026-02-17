@@ -16,27 +16,13 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
             <div className="relative w-12 h-16">
-              <svg viewBox="0 0 100 140" className="w-full h-full">
-                {/* Oval background */}
-                <ellipse cx="50" cy="70" rx="45" ry="65" fill="#F5E6D3" stroke="#8B4513" strokeWidth="2"/>
-                {/* Hand of Fatma */}
-                <g transform="translate(50, 50)">
-                  {/* Palm */}
-                  <rect x="-12" y="0" width="24" height="30" fill="#DA4229" rx="3"/>
-                  {/* Fingers */}
-                  <rect x="-18" y="-15" width="8" height="20" fill="#DA4229" rx="3"/>
-                  <rect x="-8" y="-20" width="7" height="25" fill="#DA4229" rx="3"/>
-                  <rect x="1" y="-20" width="7" height="25" fill="#DA4229" rx="3"/>
-                  <rect x="10" y="-15" width="8" height="20" fill="#DA4229" rx="3"/>
-                  {/* Eye */}
-                  <ellipse cx="0" cy="15" rx="10" ry="8" fill="#4A7C59"/>
-                  <circle cx="0" cy="15" r="4" fill="#1a1a1a"/>
-                  <circle cx="1" cy="14" r="1.5" fill="white"/>
-                </g>
-                {/* Text */}
-                <text x="50" y="115" fontFamily="serif" fontSize="14" fontWeight="bold" fill="#DA4229" textAnchor="middle">Gamza</text>
-                <text x="50" y="130" fontFamily="serif" fontSize="14" fontWeight="bold" fill="#DA4229" textAnchor="middle">Tounsia</text>
-              </svg>
+              <Image
+                src="/gamza-logo.jpg"
+                alt="Gamza Tounsia Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
             <span className="text-xl md:text-2xl font-bold text-primary-600 hidden sm:block">Gamza Tounsia</span>
           </Link>

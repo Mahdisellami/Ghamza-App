@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Gamza Tounsia - Authentic Tunisian Handcrafted Products',
   description: 'Discover authentic Tunisian handcrafted products from Gamza Tounsia - traditional ceramics, textiles, jewelry and home decor made by skilled artisans',
   icons: {
-    icon: '/favicon.png',
+    icon: '/gamza-logo.jpg',
   },
 }
 
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/gamza-logo.jpg" />
       </head>
       <body className={inter.className}>
         <Header />
