@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { getApiUrl } from '@/lib/api'
+import ProductGrid from '@/components/ProductGrid'
 
 async function getCategory(slug: string) {
   try {
@@ -123,41 +123,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                   <p className="text-gray-600">{products.length} products found</p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {products.map((product: any) => (
-                    <Link
-                      key={product.id}
-                      href={`/products/${product.slug}`}
-                      className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition"
-                    >
-                      <div className="aspect-square bg-gray-200 relative overflow-hidden">
-                        <Image
-                          src={product.images[0] || '/placeholder.jpg'}
-                          alt={product.name}
-                          fill
-                          className="object-cover group-hover:scale-110 transition duration-300"
-                        />
-                        {product.stock <= 0 && (
-                          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                            <span className="text-white font-semibold text-lg">Out of Stock</span>
-                          </div>
-                        )}
-                      </div>
-                      <div className="p-4">
-                        <h3 className="text-lg font-semibold mb-2 group-hover:text-primary-600 transition line-clamp-1">
-                          {product.name}
-                        </h3>
-                        <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-xl font-bold text-primary-600">${product.price}</span>
-                          {product.stock > 0 && (
-                            <span className="text-xs text-gray-500">{product.stock} in stock</span>
-                          )}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+                <ProductGrid products={products} />
               </>
             ) : (
               <div className="text-center py-12 bg-white rounded-lg shadow-md">

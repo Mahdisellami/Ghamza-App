@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { getApiUrl } from '@/lib/api'
+import ProductCard from '@/components/ProductCard'
 
 async function getProducts() {
   try {
@@ -112,32 +113,7 @@ export default async function Home() {
           {featuredProducts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {featuredProducts.map((product: any) => (
-                <Link
-                  key={product.id}
-                  href={`/products/${product.slug}`}
-                  className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition"
-                >
-                  <div className="aspect-square bg-gray-200 relative overflow-hidden">
-                    <Image
-                      src={product.images[0] || '/placeholder.jpg'}
-                      alt={product.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition duration-300"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-600 transition">
-                      {product.name}
-                    </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-primary-600">${product.price}</span>
-                      <span className="text-sm text-gray-500">
-                        {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           ) : (
