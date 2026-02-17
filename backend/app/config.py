@@ -14,9 +14,10 @@ class Settings(BaseSettings):
     # CORS
     ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:3001"
 
-    # Security
+    # Security / JWT
     SECRET_KEY: str = "your-secret-key-change-this-in-production"
-    ALGORITHM: str = "HS256"
+    JWT_SECRET: str = "your-jwt-secret-key-change-this-in-production"
+    JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
     class Config:

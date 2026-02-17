@@ -1,8 +1,16 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from datetime import timedelta
 from ..database import get_db
 from ..models import User
 from ..schemas import UserCreate, UserResponse, UserLogin, Token
+from ..auth import (
+    get_password_hash,
+    verify_password,
+    create_access_token,
+    get_current_active_user,
+    ACCESS_TOKEN_EXPIRE_MINUTES
+)
 
 router = APIRouter()
 
@@ -18,8 +26,8 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
             detail="Email already registered"
         )
 
-    # TODO: Hash the password properly
-    hashed_password = user.password  # This should be hashed!
+    # Hash the password
+    hashed_password = get_password_hash(user.password)
 
     db_user = User(
         email=user.email,
@@ -39,27 +47,38 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
 @router.post("/login", response_model=Token)
 def login(user_credentials: UserLogin, db: Session = Depends(get_db)):
     """Login user and return JWT token"""
-    # TODO: Implement proper authentication with JWT
+    # Find user by email
     db_user = db.query(User).filter(User.email == user_credentials.email).first()
 
-    if not db_user or db_user.hashed_password != user_credentials.password:
+    # Verify user exists and password is correct
+    if not db_user or not verify_password(user_credentials.password, db_user.hashed_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect email or password"
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
         )
 
-    # TODO: Generate proper JWT token
+    # Check if user is active
+    if not db_user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Inactive user"
+        )
+
+    # Create access token
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": str(db_user.id), "email": db_user.email},
+        expires_delta=access_token_expires
+    )
+
     return {
-        "access_token": "dummy_token",
+        "access_token": access_token,
         "token_type": "bearer"
     }
 
 
 @router.get("/me", response_model=UserResponse)
-def get_current_user(db: Session = Depends(get_db)):
-    """Get current user details"""
-    # TODO: Implement proper auth dependency
-    raise HTTPException(
-        status_code=status.HTTP_501_NOT_IMPLEMENTED,
-        detail="Authentication not yet implemented"
-    )
+def get_me(current_user: User = Depends(get_current_active_user)):
+    """Get current authenticated user details"""
+    return current_user

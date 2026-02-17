@@ -2,34 +2,47 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List
 from ..database import get_db
-from ..models import Order, OrderItem, Product
+from ..models import Order, OrderItem, Product, User
 from ..schemas import OrderCreate, OrderResponse
+from ..auth import get_current_active_user
 
 router = APIRouter()
 
 
 @router.get("/", response_model=List[OrderResponse])
-def get_orders(db: Session = Depends(get_db)):
-    """Get all orders for current user (TODO: add auth)"""
-    # TODO: Filter by current user
-    orders = db.query(Order).all()
+def get_orders(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
+):
+    """Get all orders for current authenticated user"""
+    orders = db.query(Order).filter(Order.user_id == current_user.id).all()
     return orders
 
 
 @router.get("/{order_id}", response_model=OrderResponse)
-def get_order(order_id: int, db: Session = Depends(get_db)):
-    """Get a specific order"""
-    order = db.query(Order).filter(Order.id == order_id).first()
+def get_order(
+    order_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
+):
+    """Get a specific order (must belong to current user)"""
+    order = db.query(Order).filter(
+        Order.id == order_id,
+        Order.user_id == current_user.id
+    ).first()
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
     return order
 
 
 @router.post("/", response_model=OrderResponse, status_code=status.HTTP_201_CREATED)
-def create_order(order_data: OrderCreate, db: Session = Depends(get_db)):
-    """Create a new order"""
-    # TODO: Get current user from auth
-    user_id = 1  # Placeholder
+def create_order(
+    order_data: OrderCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
+):
+    """Create a new order for current authenticated user"""
+    user_id = current_user.id
 
     # Calculate total
     total = 0.0
