@@ -4,11 +4,17 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { useCartStore } from '@/stores/cartStore'
+import { useSession } from 'next-auth/react'
+import { useCart } from '@/hooks/useCart'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { ordersAPI } from '@/services/api'
+import Price from '@/components/Price'
 
 export default function CheckoutPage() {
   const router = useRouter()
-  const { items, getTotalPrice, clearCart } = useCartStore()
+  const { data: session, status } = useSession()
+  const { items, getTotalPrice, clearCart } = useCart()
+  const { t } = useLanguage()
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
 
@@ -21,18 +27,21 @@ export default function CheckoutPage() {
     city: '',
     state: '',
     zipCode: '',
-    country: ''
+    country: 'TN'
   })
 
   const [paymentMethod, setPaymentMethod] = useState('card')
-  const [sameAsShipping, setSameAsShipping] = useState(true)
+  const [notes, setNotes] = useState('')
 
-  // Redirect if cart is empty
+  // Redirect if not authenticated or cart is empty
   useEffect(() => {
-    if (items.length === 0) {
+    if (status === 'unauthenticated') {
+      router.push('/login?redirect=/checkout')
+    }
+    if (status === 'authenticated' && items.length === 0) {
       router.push('/cart')
     }
-  }, [items, router])
+  }, [status, items.length, router])
 
   const subtotal = getTotalPrice()
   const shipping = subtotal > 0 ? 15 : 0 // Flat rate shipping
@@ -81,32 +90,29 @@ export default function CheckoutPage() {
     setLoading(true)
 
     try {
-      // TODO: Implement actual order submission to backend
-      // const orderData = {
-      //   items: items.map(item => ({
-      //     product_id: item.id,
-      //     quantity: item.quantity,
-      //     price: item.price
-      //   })),
-      //   shipping_address: shippingInfo,
-      //   payment_method: paymentMethod,
-      //   subtotal,
-      //   shipping,
-      //   tax,
-      //   total
-      // }
-      // const response = await api.post('/api/orders/', orderData)
+      // Create order from cart items
+      const orderData = {
+        items: items.map(item => ({
+          product_id: item.id,
+          quantity: item.quantity
+        })),
+        shipping_address: `${shippingInfo.address}`,
+        shipping_city: shippingInfo.city,
+        shipping_postal_code: shippingInfo.zipCode,
+        phone: shippingInfo.phone,
+        notes: notes || `Name: ${shippingInfo.firstName} ${shippingInfo.lastName}, Email: ${shippingInfo.email}, Country: ${shippingInfo.country}, Payment: ${paymentMethod}`
+      }
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      const order = await ordersAPI.create(orderData)
 
-      console.log('Order submitted:', { items, shippingInfo, paymentMethod, total })
+      // Clear cart after successful order
+      await clearCart()
 
-      // Clear cart and redirect to success page
-      clearCart()
-      router.push('/?order=success')
+      // Redirect to order confirmation
+      router.push(`/orders/${order.id}?success=true`)
     } catch (err: any) {
-      setErrors({ general: err.response?.data?.message || 'Failed to process order. Please try again.' })
+      console.error('Order creation error:', err)
+      setErrors({ general: err.response?.data?.detail || 'Failed to process order. Please try again.' })
     } finally {
       setLoading(false)
     }
@@ -309,6 +315,22 @@ export default function CheckoutPage() {
                       {errors.country && <p className="mt-1 text-xs text-red-600">{errors.country}</p>}
                     </div>
                   </div>
+
+                  {/* Order Notes */}
+                  <div className="mt-6">
+                    <label htmlFor="notes" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Order Notes (Optional)
+                    </label>
+                    <textarea
+                      id="notes"
+                      name="notes"
+                      value={notes}
+                      onChange={(e) => setNotes(e.target.value)}
+                      rows={3}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      placeholder="Any special instructions for your order"
+                    />
+                  </div>
                 </div>
 
                 {/* Payment Method */}
@@ -379,9 +401,7 @@ export default function CheckoutPage() {
                         <div className="flex-1">
                           <h3 className="font-semibold text-sm line-clamp-2">{item.name}</h3>
                           <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
-                          <p className="text-sm font-semibold text-primary-600">
-                            ${(item.price * item.quantity).toFixed(2)}
-                          </p>
+                          <Price amount={item.price * item.quantity} className="text-sm font-semibold text-primary-600" />
                         </div>
                       </div>
                     ))}
@@ -390,20 +410,20 @@ export default function CheckoutPage() {
                   {/* Totals */}
                   <div className="border-t border-gray-200 pt-4 space-y-2">
                     <div className="flex justify-between text-gray-600">
-                      <span>Subtotal</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>{t('cart.subtotal')}</span>
+                      <Price amount={subtotal} className="text-gray-600" />
                     </div>
                     <div className="flex justify-between text-gray-600">
-                      <span>Shipping</span>
-                      <span>${shipping.toFixed(2)}</span>
+                      <span>{t('cart.shipping')}</span>
+                      <span className="text-green-600">{t('cart.free_shipping')}</span>
                     </div>
                     <div className="flex justify-between text-gray-600">
-                      <span>Tax</span>
-                      <span>${tax.toFixed(2)}</span>
+                      <span>{t('cart.tax')}</span>
+                      <span>{t('cart.tax_checkout')}</span>
                     </div>
                     <div className="border-t border-gray-200 pt-2 flex justify-between text-lg font-bold">
-                      <span>Total</span>
-                      <span className="text-primary-600">${total.toFixed(2)}</span>
+                      <span>{t('cart.total')}</span>
+                      <Price amount={subtotal} className="text-primary-600 font-bold text-lg" />
                     </div>
                   </div>
 
