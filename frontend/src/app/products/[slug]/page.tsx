@@ -4,14 +4,14 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useCartStore } from '@/stores/cartStore'
+import { useCart } from '@/hooks/useCart'
 import { useLanguage } from '@/contexts/LanguageContext'
 import Price from '@/components/Price'
 
 export default function ProductDetailPage() {
   const params = useParams()
   const router = useRouter()
-  const addItem = useCartStore((state) => state.addItem)
+  const { addItem } = useCart()
   const { t } = useLanguage()
   const [product, setProduct] = useState<any>(null)
   const [quantity, setQuantity] = useState(1)
@@ -34,21 +34,24 @@ export default function ProductDetailPage() {
     fetchProduct()
   }, [params.slug])
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     setAdding(true)
-    addItem({
-      id: product.id,
-      name: product.name,
-      slug: product.slug,
-      price: product.price,
-      image: product.images[0] || '/placeholder.jpg',
-      stock: product.stock,
-      quantity: quantity
-    })
-    setTimeout(() => {
-      setAdding(false)
-      // Optional: redirect to cart or show success message
-    }, 300)
+    try {
+      await addItem({
+        id: product.id,
+        name: product.name,
+        slug: product.slug,
+        price: product.price,
+        image: product.images[0] || '/placeholder.jpg',
+        stock: product.stock,
+        quantity: quantity
+      })
+      // Optional: show success message
+    } catch (error) {
+      console.error('Failed to add to cart:', error)
+    } finally {
+      setTimeout(() => setAdding(false), 300)
+    }
   }
 
   if (loading) {

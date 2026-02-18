@@ -1,14 +1,25 @@
 'use client'
 
-import { useCartStore } from '@/stores/cartStore'
+import { useCart } from '@/hooks/useCart'
 import { useLanguage } from '@/contexts/LanguageContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import Price from '@/components/Price'
 
 export default function CartPage() {
-  const { items, removeItem, updateQuantity, clearCart, getTotalPrice } = useCartStore()
+  const { items, removeItem, updateQuantity, clearCart, getTotalPrice, loading } = useCart()
   const { t } = useLanguage()
+
+  if (loading && items.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">{t('common.loading')}</p>
+        </div>
+      </div>
+    )
+  }
 
   if (items.length === 0) {
     return (

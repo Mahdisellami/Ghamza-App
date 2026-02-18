@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
-import { useCartStore } from '@/stores/cartStore'
+import { useCart } from '@/hooks/useCart'
 import CurrencySelector from './CurrencySelector'
 import LanguageSelector from './LanguageSelector'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -13,7 +13,7 @@ import { useBackendAuth } from '@/hooks/useBackendAuth'
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
-  const getTotalItems = useCartStore((state) => state.getTotalItems)
+  const { getTotalItems } = useCart()
   const { t } = useLanguage()
   const { data: session, status } = useSession()
 
