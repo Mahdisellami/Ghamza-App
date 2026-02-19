@@ -1,13 +1,11 @@
-services:
-  # PostgreSQL Database
-  - type: pserv
-    name: ghamza-db
+databases:
+  - name: ghamza-db
     plan: free
     region: frankfurt
     databaseName: ghamza_shop
-    databaseUser: ghamza_user
+    user: ghamza_user
 
-  # FastAPI Backend
+services:
   - type: web
     name: ghamza-api
     runtime: python
