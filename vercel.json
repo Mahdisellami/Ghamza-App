@@ -1,8 +1,3 @@
 {
-  "version": 2,
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "rootDirectory": "frontend",
-  "regions": ["fra1"]
+  "version": 2
 }
