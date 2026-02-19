@@ -3,7 +3,6 @@ services:
   - type: pserv
     name: ghamza-db
     plan: free
-    env: docker
     region: frankfurt
     databaseName: ghamza_shop
     databaseUser: ghamza_user
@@ -33,7 +32,3 @@ services:
         value: https://your-vercel-app.vercel.app,http://localhost:3000
       - key: DEBUG
         value: false
-      - key: API_HOST
-        value: 0.0.0.0
-      - key: API_PORT
-        fromGroup: web
