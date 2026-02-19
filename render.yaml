@@ -1,0 +1,39 @@
+services:
+  # PostgreSQL Database
+  - type: pserv
+    name: ghamza-db
+    plan: free
+    env: docker
+    region: frankfurt
+    databaseName: ghamza_shop
+    databaseUser: ghamza_user
+
+  # FastAPI Backend
+  - type: web
+    name: ghamza-api
+    runtime: python
+    region: frankfurt
+    plan: free
+    buildCommand: "cd backend && pip install -r requirements.txt"
+    startCommand: "cd backend && alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ghamza-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 30
+      - key: ALLOWED_ORIGINS
+        value: https://your-vercel-app.vercel.app,http://localhost:3000
+      - key: DEBUG
+        value: false
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: API_PORT
+        fromGroup: web
