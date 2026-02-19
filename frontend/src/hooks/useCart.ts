@@ -21,7 +21,7 @@ export function useCart() {
     if (isAuthenticated && session?.backendToken) {
       backendCart.fetchCart()
     }
-  }, [isAuthenticated, session?.backendToken])
+  }, [isAuthenticated, session?.backendToken, backendCart])
 
   // Return the appropriate cart based on auth status
   if (isAuthenticated) {
