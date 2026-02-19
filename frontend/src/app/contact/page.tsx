@@ -35,7 +35,7 @@ export default function ContactPage() {
       <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-12">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-xl text-primary-100">We'd love to hear from you</p>
+          <p className="text-xl text-primary-100">We&apos;d love to hear from you</p>
         </div>
       </section>
 
@@ -47,7 +47,7 @@ export default function ContactPage() {
               <div className="bg-white rounded-lg shadow-md p-8 mb-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
                 <p className="text-gray-600 mb-6">
-                  Have questions about our products or your order? We're here to help! Reach out to us
+                  Have questions about our products or your order? We&apos;re here to help! Reach out to us
                   through any of the channels below.
                 </p>
 
@@ -135,7 +135,7 @@ export default function ContactPage() {
               {submitted && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                   <p className="text-green-800 font-semibold">Thank you for your message!</p>
-                  <p className="text-green-600 text-sm">We'll get back to you as soon as possible.</p>
+                  <p className="text-green-600 text-sm">We&apos;ll get back to you as soon as possible.</p>
                 </div>
               )}
 

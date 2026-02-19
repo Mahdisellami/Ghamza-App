@@ -12,30 +12,15 @@ export default function OrdersPage() {
   const router = useRouter()
   const { t } = useLanguage()
 
+  // Fetch orders from backend - hooks must be called before any early returns
+  const [orders, setOrders] = React.useState<any[]>([])
+  const [ordersLoading, setOrdersLoading] = React.useState(true)
+
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/login')
     }
   }, [status, router])
-
-  if (status === 'loading') {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">{t('common.loading')}</p>
-        </div>
-      </div>
-    )
-  }
-
-  if (!session?.user) {
-    return null
-  }
-
-  // Fetch orders from backend
-  const [orders, setOrders] = React.useState<any[]>([])
-  const [ordersLoading, setOrdersLoading] = React.useState(true)
 
   React.useEffect(() => {
     async function fetchOrders() {
@@ -54,6 +39,21 @@ export default function OrdersPage() {
       fetchOrders()
     }
   }, [session])
+
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">{t('common.loading')}</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!session?.user) {
+    return null
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">

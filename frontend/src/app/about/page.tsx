@@ -19,8 +19,8 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
             <div className="space-y-4 text-gray-600">
               <p>
-                Gamza Tounsia is a celebration of Tunisia's rich artisanal heritage. Our name, "Gamza" derived from the Arabic word
-                meaning "wink" or "blink," represents the fleeting moments of beauty captured in each handcrafted piece, while "Tounsia"
+                Gamza Tounsia is a celebration of Tunisia&apos;s rich artisanal heritage. Our name, &quot;Gamza&quot; derived from the Arabic word
+                meaning &quot;wink&quot; or &quot;blink,&quot; represents the fleeting moments of beauty captured in each handcrafted piece, while &quot;Tounsia&quot;
                 proudly proclaims our Tunisian roots.
               </p>
               <p>
@@ -31,7 +31,7 @@ export default function AboutPage() {
               <p>
                 From the vibrant ceramics of Nabeul to the intricate textiles of Kairouan, from the delicate
                 silver filigree work to the rustic olive wood creations, every item in our collection is a testament
-                to Tunisia's diverse cultural tapestry.
+                to Tunisia&apos;s diverse cultural tapestry.
               </p>
             </div>
           </section>
