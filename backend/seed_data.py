@@ -16,11 +16,11 @@ def seed_categories(db: Session):
     """Seed categories"""
     print("\nSeeding categories...")
     categories = [
-        Category(name="Pottery", slug="pottery", description="Traditional Tunisian pottery"),
-        Category(name="Textiles", slug="textiles", description="Handwoven textiles and fabrics"),
-        Category(name="Jewelry", slug="jewelry", description="Handcrafted jewelry"),
-        Category(name="Baskets", slug="baskets", description="Woven baskets and containers"),
-        Category(name="Home Decor", slug="home-decor", description="Decorative items for your home"),
+        Category(name="Sweatshirts & Hoodies", slug="sweatshirts-hoodies", description="Modern Tunisian streetwear tops"),
+        Category(name="Bottoms", slug="bottoms", description="Pants, joggers and traditional-modern fusion wear"),
+        Category(name="T-Shirts", slug="t-shirts", description="Contemporary Tunisian identity shirts"),
+        Category(name="Collections", slug="collections", description="Signature collections blending tradition and modernity"),
+        Category(name="Accessories", slug="accessories", description="Complementary streetwear accessories"),
     ]
 
     for category in categories:
@@ -36,163 +36,131 @@ def seed_products(db: Session):
     print("\nSeeding products...")
 
     # Get categories
-    pottery = db.query(Category).filter(Category.slug == "pottery").first()
-    textiles = db.query(Category).filter(Category.slug == "textiles").first()
-    jewelry = db.query(Category).filter(Category.slug == "jewelry").first()
-    baskets = db.query(Category).filter(Category.slug == "baskets").first()
-    home_decor = db.query(Category).filter(Category.slug == "home-decor").first()
+    sweatshirts = db.query(Category).filter(Category.slug == "sweatshirts-hoodies").first()
+    bottoms = db.query(Category).filter(Category.slug == "bottoms").first()
+    tshirts = db.query(Category).filter(Category.slug == "t-shirts").first()
+    collections = db.query(Category).filter(Category.slug == "collections").first()
 
     products = [
-        # Pottery items - Nabeul ceramics
+        # DRIBA Collection
         Product(
-            name="Assiette Dune - Grès Émaillé Craquelé",
-            slug="assiette-dune-gres-emaille",
-            description="Assiette artisanale en grès émaillé avec finition craquelée. Fabriquée à Nabeul, cette pièce unique présente les motifs traditionnels tunisiens. Parfaite pour sublimer vos tables.",
-            price=38.00,
-            stock=15,
-            category_id=pottery.id,
-            images=["/images/products/assiette-dune-nabeul.jpg"],
-            is_active=True
-        ),
-        Product(
-            name="Plat Lila - Service Céramique",
-            slug="plat-lila-service-ceramique",
-            description="Grand plat de service en grès émaillé craquelé. Idéal pour présenter vos plats traditionnels tunisiens. Artisanat de Nabeul.",
-            price=85.00,
-            stock=8,
-            category_id=pottery.id,
-            images=["/images/products/plat-lila-ceramique.jpg"],
-            is_active=True
-        ),
-        Product(
-            name="Bol Artisanal Nabeul - Set de 4",
-            slug="bol-artisanal-nabeul-set",
-            description="Ensemble de 4 bols en céramique peinte à la main. Motifs géométriques traditionnels bleu et blanc de Nabeul. Parfaits pour servir soupes et salades.",
-            price=95.00,
-            stock=10,
-            category_id=pottery.id,
-            images=["/images/products/bol-artisanal-nabeul.jpg"],
-            is_active=True
-        ),
-        Product(
-            name="Planche à Découper en Olivier",
-            slug="planche-olivier-artisanale",
-            description="Planche à découper artisanale en bois d'olivier massif. Chaque pièce est unique avec ses veinures naturelles. Produit durable et écologique.",
-            price=45.00,
-            stock=12,
-            category_id=pottery.id,
-            images=["/images/products/olivier-cutting-board.jpg"],
-            is_active=True
-        ),
-
-        # Textiles - Foutas and Margoum
-        Product(
-            name="Fouta Traditionnelle Tissée Main",
-            slug="fouta-traditionnelle-tissee",
-            description="Fouta 100% coton tissée à la main selon la tradition tunisienne. Polyvalente: serviette de plage, paréo, jeté de canapé. Motifs rayés authentiques.",
-            price=42.00,
-            stock=20,
-            category_id=textiles.id,
-            images=["/images/products/fouta-traditionnelle.jpg"],
-            is_active=True
-        ),
-        Product(
-            name="Jeté de Lit Shems - Coton",
-            slug="jete-lit-shems-coton",
-            description="Jeté de lit en coton épais avec motifs géométriques traditionnels. Fabriqué par des artisanes tunisiennes. Apporte chaleur et authenticité à votre chambre.",
-            price=125.00,
-            stock=8,
-            category_id=textiles.id,
-            images=["/images/products/shems-bed-throw.jpg"],
-            is_active=True
-        ),
-        Product(
-            name="Tapis Margoum Laine - Motifs Regma",
-            slug="tapis-margoum-laine-regma",
-            description="Tapis margoum authentique 100% laine tissé à la main par des artisanes tunisiennes. Motifs géométriques regma (losanges) symbolisant la fertilité. Fabriqué à Kairouan selon la tradition berbère. Tons rouge, beige et bleu.",
-            price=380.00,
-            stock=5,
-            category_id=textiles.id,
-            images=["/images/products/margoum-rug.jpg"],
-            is_active=True
-        ),
-        Product(
-            name="Housse de Coussin Brodée",
-            slug="housse-coussin-brodee",
-            description="Housse de coussin avec broderie traditionnelle tunisienne. Motifs floraux et géométriques faits main. Ajoute une touche d'élégance orientale.",
-            price=35.00,
+            name="DRIBA - Ensemble Complet",
+            slug="driba-ensemble-complet",
+            description="Collection DRIBA complète inspirée de l'architecture tunisienne traditionnelle. Une fusion parfaite entre l'identité moderne et l'âme nord-africaine. Motifs de portes bleues traditionnelles et carreaux de Sidi Bou Said. 100% coton premium, coupe moderne streetwear.",
+            price=120.00,
             stock=25,
-            category_id=textiles.id,
-            images=["/images/products/housse-coussin-brodee.jpg"],
+            category_id=collections.id,
+            images=[
+                "/images/products/driba-collection-1.jpg",
+                "/images/products/driba-collection-2.jpg",
+                "/images/products/driba-architecture.jpg"
+            ],
             is_active=True
         ),
 
-        # Jewelry - Khomsa and traditional
+        # Touf Street Sweatshirts Collection
         Product(
-            name="Collier Filigrane en Argent",
-            slug="collier-filigrane-argent",
-            description="Collier artisanal en argent avec travail de filigrane traditionnel. Technique ancestrale tunisienne. Pièce élégante et intemporelle.",
-            price=165.00,
-            stock=6,
-            category_id=jewelry.id,
-            images=["/images/products/collier-filigrane-argent.jpg"],
-            is_active=True
-        ),
-        Product(
-            name="Bracelet Main de Fatma",
-            slug="bracelet-main-fatma",
-            description="Bracelet traditionnel avec symbole de la Main de Fatma (Khomsa). Protection et chance selon la tradition tunisienne. Travail artisanal du métal.",
-            price=58.00,
-            stock=15,
-            category_id=jewelry.id,
-            images=["/images/products/bracelet-main-fatma.jpg"],
-            is_active=True
-        ),
-
-        # Copper and metal work
-        Product(
-            name="Bonbonnière Cuivre Martelé",
-            slug="bonbonniere-cuivre-martele",
-            description="Bonbonnière avec couvercle en cuivre martelé à la main. Artisanat traditionnel tunisien. Parfaite pour présenter vos douceurs orientales.",
-            price=95.00,
-            stock=7,
-            category_id=home_decor.id,
-            images=["/images/products/copper-bonbonniere.jpg"],
-            is_active=True
-        ),
-        Product(
-            name="Mortier en Bois d'Olivier",
-            slug="mortier-olivier-artisanal",
-            description="Mortier et pilon en bois d'olivier massif. Outil traditionnel pour épices et condiments. Pièce fonctionnelle et décorative.",
-            price=52.00,
-            stock=10,
-            category_id=baskets.id,
-            images=["/images/products/mortier-olivier.jpg"],
-            is_active=True
-        ),
-
-        # Baskets
-        Product(
-            name="Couffin en Palme Tressée",
-            slug="couffin-palme-tressee",
-            description="Panier traditionnel tunisien (couffin) tressé en feuilles de palmier. Idéal pour le marché ou comme élément décoratif. Artisanat authentique.",
-            price=48.00,
-            stock=18,
-            category_id=baskets.id,
-            images=["/images/products/palm-basket.jpg"],
-            is_active=True
-        ),
-
-        # Lighting
-        Product(
-            name="Lanterne Orientale Ajourée",
-            slug="lanterne-orientale-ajouree",
-            description="Lanterne décorative en métal ajouré avec motifs orientaux. Crée une ambiance chaleureuse avec ses jeux de lumière. Artisanat tunisien.",
+            name="Sweatshirt Touf Street - Gris",
+            slug="sweatshirt-touf-street-gris",
+            description="Sweatshirt premium 'شارع توف' (Touf Street) en gris chiné. Design streetwear tunisien moderne avec logo brodé. Coton épais de qualité supérieure, coupe oversize confortable. Disponible en plusieurs tailles.",
             price=75.00,
-            stock=12,
-            category_id=home_decor.id,
-            images=["/images/products/lanterne-orientale.jpg"],
+            stock=30,
+            category_id=sweatshirts.id,
+            images=[
+                "/images/products/touf-street-grey-1.jpg",
+                "/images/products/touf-street-grey-2.jpg"
+            ],
             is_active=True
+        ),
+        Product(
+            name="Sweatshirt Touf Street - Bleu Ciel",
+            slug="sweatshirt-touf-street-bleu",
+            description="Sweatshirt 'شارع توف' (Touf Street) bleu ciel avec bandes latérales. Inspiré des couleurs de Sidi Bou Said. Design moderne avec touches traditionnelles. Tissu doux et résistant, parfait pour toutes les saisons.",
+            price=75.00,
+            stock=30,
+            category_id=sweatshirts.id,
+            images=[
+                "/images/products/touf-street-blue-1.jpg",
+                "/images/products/touf-street-blue-2.jpg",
+                "/images/products/touf-street-blue-sidi-bou-said.jpg"
+            ],
+            is_active=True
+        ),
+        Product(
+            name="Sweatshirt Touf Street - Monument",
+            slug="sweatshirt-touf-street-monument",
+            description="Sweatshirt Touf Street édition spéciale avec monument tunisien en arrière-plan. Représente le patrimoine architectural de la Tunisie. Motifs traditionnels sur les côtés. Coupe moderne streetwear.",
+            price=80.00,
+            stock=20,
+            category_id=sweatshirts.id,
+            images=[
+                "/images/products/touf-street-monument-1.jpg",
+                "/images/products/touf-street-monument-2.jpg",
+                "/images/products/touf-street-monument-3.jpg"
+            ],
+            is_active=True
+        ),
+
+        # Joggers/Bottoms with Traditional Patterns
+        Product(
+            name="Jogger Noir - Motifs Berbères",
+            slug="jogger-noir-motifs-berberes",
+            description="Jogger noir premium avec bandes latérales ornées de motifs géométriques berbères traditionnels. Couleurs rouge, orange et symboles ancestraux. Coupe moderne streetwear, taille élastique, poches zippées. Fusion parfaite tradition-modernité.",
+            price=85.00,
+            stock=25,
+            category_id=bottoms.id,
+            images=[
+                "/images/products/jogger-berber-patterns-1.jpg",
+                "/images/products/jogger-berber-patterns-2.jpg",
+                "/images/products/jogger-berber-patterns-3.jpg",
+                "/images/products/jogger-berber-patterns-detail.jpg"
+            ],
+            is_active=True
+        ),
+
+        # T-Shirts
+        Product(
+            name="T-Shirt DRIBA - Beige",
+            slug="tshirt-driba-beige",
+            description="T-shirt DRIBA en coton beige avec logo brodé. Design minimaliste et élégant inspiré de l'architecture tunisienne. Coupe moderne décontractée. Idéal pour un style streetwear subtil.",
+            price=45.00,
+            stock=40,
+            category_id=tshirts.id,
+            images=[
+                "/images/products/driba-tshirt-beige.jpg",
+                "/images/products/driba-tshirt-beige-2.jpg"
+            ],
+            is_active=True
+        ),
+        Product(
+            name="T-Shirt Tunisien - Blanc Cassé",
+            slug="tshirt-tunisien-blanc",
+            description="T-shirt blanc cassé avec inscriptions arabes et design moderne. Représente l'identité tunisienne contemporaine. 100% coton de qualité, coupe regular fit.",
+            price=42.00,
+            stock=35,
+            category_id=tshirts.id,
+            images=[
+                "/images/products/tunisia-tshirt-white.jpg"
+            ],
+            is_active=True
+        ),
+
+        # Coming Soon / Brand Items
+        Product(
+            name="Collection Exclusive - Pré-commande",
+            slug="collection-exclusive-precommande",
+            description="Nouvelle collection exclusive Gamza Tounsia à venir. Identité moderne, âme nord-africaine. Logo Main de Fatma avec œil protecteur. Inscription pour être notifié du lancement.",
+            price=0.00,
+            stock=0,
+            category_id=collections.id,
+            images=[
+                "/images/products/coming-soon-1.jpg",
+                "/images/products/coming-soon-2.jpg",
+                "/images/products/coming-soon-3.jpg",
+                "/images/products/coming-soon-4.jpg",
+                "/images/products/coming-soon-5.jpg"
+            ],
+            is_active=False
         ),
     ]
 
