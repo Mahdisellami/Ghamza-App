@@ -51,6 +51,11 @@ async def seed_database():
     Seed the database with initial categories and products.
     This endpoint should only be called once or when resetting data.
     """
+    from .database import Base, engine
+
+    # Create all tables first
+    Base.metadata.create_all(bind=engine)
+
     db = SessionLocal()
     try:
         # Check if categories already exist
