@@ -28,8 +28,8 @@ services:
       - key: JWT_ALGORITHM
         value: HS256
       - key: ACCESS_TOKEN_EXPIRE_MINUTES
-        value: 30
+        value: "30"
       - key: ALLOWED_ORIGINS
         value: https://your-vercel-app.vercel.app,http://localhost:3000
       - key: DEBUG
-        value: false
+        value: "false"
